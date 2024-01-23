@@ -1,0 +1,17 @@
+{
+  "name": "gerador-txt-excel",
+  "version": "1.0.0",
+  "description": "",
+  "module": "ES",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonrawtoxlsx": "^1.1.0",
+    "pdf2json": "^3.0.5"
+  }
+}
