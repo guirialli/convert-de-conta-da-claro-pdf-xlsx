@@ -59,7 +59,7 @@ async function main() {
                     })
                 })
             })
-            
+
             const obj = []
             for (let i = 0; i < telNumeros.length; i++) {
                 obj.push({
@@ -70,7 +70,7 @@ async function main() {
             await fs.writeFile(path_final_json, JSON.stringify(obj), "utf-8");
             arquivos -= 1
         });
-
+        
         pdfParser.loadPDF(path.join(PDF_DIR, pdf))
     })
 }
