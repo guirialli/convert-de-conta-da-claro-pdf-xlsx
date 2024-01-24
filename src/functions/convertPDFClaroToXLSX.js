@@ -5,11 +5,9 @@ const PDFParser = require("pdf2json");
 const jsonrawtoxlsx = require('jsonrawtoxlsx');
 const path = require('path');
 
-async function convert(PDF_DIR) {
+async function convert(PDF_DIR, MODELO_DIR = undefined) {
     if (!existsSync(PDF_DIR))
         throw new Error("PDF file does not exist!");
-
-
 
     const basename = String(path.basename(PDF_DIR));
     const basenameArr = basename.split('.');
@@ -18,7 +16,6 @@ async function convert(PDF_DIR) {
         throw new Error("Não é um arquivo em PDF!");
     
     const xls_final = path.join(path.dirname(PDF_DIR), basename.split(".")[0] + ".xlsx");
-    console.log(xls_final);
 
     const pdfParser = new PDFParser();
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError));
@@ -63,6 +60,11 @@ async function convert(PDF_DIR) {
                 numero: telNumeros[i],
                 dinheiro: dinheiro[i]
             })
+        }
+
+        if(MODELO_DIR && existsSync(MODELO_DIR)){
+
+            return;
         }
         const buffer = jsonrawtoxlsx(obj)
         await fs.writeFile(xls_final, buffer, "binary");
